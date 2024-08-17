@@ -1,10 +1,7 @@
-version: '3.5'
 services:
   py-web-app:
     container_name: homer-simpson-quotes-container
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: 901407365530.dkr.ecr.eu-north-1.amazonaws.com/python/python_app:latest
     ports:
       - "5000:5000"
     depends_on:
@@ -24,6 +21,6 @@ services:
       - redis-data:/data
     stop_grace_period: 30s
     restart: unless-stopped
-      
+
 volumes:
   redis-data:

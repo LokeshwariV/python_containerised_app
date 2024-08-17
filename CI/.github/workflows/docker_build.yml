@@ -19,7 +19,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      # Install Python and dependencies
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -30,12 +29,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r ./app/requirements.txt
 
-      # Run pytest
       - name: Run Tests with pytest
         run: |
           pytest --maxfail=1 --disable-warnings
 
-      # Set up AWS credentials using aws-actions/configure-aws-credentials
       - name: Auth ECR
         env:
           AWS_REGION: ${{ secrets.AWS_REGION }}
