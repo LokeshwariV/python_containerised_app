@@ -24,7 +24,7 @@ The GitHub Actions CI pipeline (.github/workflows/docker_build.yml) is triggered
 
 ![Alt text](images/aws_ecr.png)
 
-## Using the Application with GitHub CI Workflow
+## Instructions to run the docker file with GitHub CI Workflow
 
 ### Prerequisites
 
@@ -54,7 +54,6 @@ Continuous Delivery (CD) involves automating the deployment process to ensure th
 
 - Infrastructure Provisioning ("/CD/Infrastructure" Folder): Terraform is used to build and manage the infrastructure. The Terraform code is processed by GitHub Actions, which builds the code and generates a plan. This plan is then saved and uploaded to GitHub Artifacts for review. The infrastructure deployment is triggered manually after the plan has been reviewed and verified. the Terraform state file is stored in Amazon S3. The state file is referenced in each run to verify and manage the current state of the infrastructure.
 
-- Application Deployment: The deployment of application is managed using Chef. The Docker Compose configuration is encapsulated in a Chef cookbook, which ensures that the latest application image is pulled from Amazon ECR and deployed each time the deployment is executed.
+- Application Deployment: The deployment of application is managed using Chef. The Docker Compose configuration and deployment is encapsulated in a Chef cookbook, which ensures that the latest application image is pulled from Amazon ECR and deployed each time the deployment is executed.
 
 Note: Due to infrastructure limitations, the full Continuous Delivery pipeline has not been implemented. However, examples of the Terraform infrastructure code and Chef cookbook are provided in the folder for illustration purposes.
-
