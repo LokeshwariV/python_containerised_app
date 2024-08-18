@@ -1,0 +1,25 @@
+---
+provisioner:
+  name: chef_zero
+  cookbook_files_glob: "**/*"
+  multiple_converge: 2
+  enforce_idempotency: false
+  retry_on_exit_code:
+    - 35 
+    - 1
+  max_retries: 2
+  wait_for_retry: 180
+  root_path: /var/tmp/kitchen
+
+verifier:
+  name: inspec
+
+suites:
+  - name: deploy-docker_compose
+    includes:
+      - ubuntu-22.04
+    verifier:
+      inspec_tests:
+        - test/integration/default
+    run_list:
+      - recipe[deploy-docker_compose::install]
